@@ -28,7 +28,8 @@ CREATE TABLE IF NOT EXISTS `contacts_app`.`users` (
   `password` VARCHAR(100) NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL,
-  PRIMARY KEY (`id`));
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC));
 
 CREATE TABLE `contacts_app`.`contacts` (
     `id` INT UNIQUE NOT NULL AUTO_INCREMENT,
