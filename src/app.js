@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const passport = require('passport');
 const methodOverride = require('method-override');
+const flash = require('connect-flash');
 
 require('dotenv').config();
 
@@ -37,7 +38,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
-    secret: 'contactsapp',
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true
 }));
@@ -45,15 +46,16 @@ app.use(methodOverride('_method'));
 app.use(cors());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 // Routers
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const userRouter = require('./routes/user');
 const contactsRouter = require('./routes/contacts');
 
 // Routes
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', userRouter);
 app.use('/contacts', contactsRouter);
 
 // Locals
