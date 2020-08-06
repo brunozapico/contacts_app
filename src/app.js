@@ -54,7 +54,7 @@ const userRouter = require('./routes/user');
 const contactsRouter = require('./routes/contacts');
 
 // API v1 Routers
-const apiUserRouter_v1 = require('./API/routes/user');
+const apiUserRouter_v1 = require('./API/routes/apiUser_v1');
 
 // Routes
 app.use('/', indexRouter);
