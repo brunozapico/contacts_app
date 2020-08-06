@@ -53,10 +53,16 @@ const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const contactsRouter = require('./routes/contacts');
 
+// API v1 Routers
+const apiUserRouter_v1 = require('./API/routes/user');
+
 // Routes
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/contacts', contactsRouter);
+
+// API v1 Routes
+app.use('/api/v1', apiUserRouter_v1);
 
 // Locals
 app.locals.contactsApp = 'Contacts App';
