@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <% if (typeof errors != 'undefined') { %>
+        <ul>
+            <% for (let i = 0; i < errors.length; i++) { %>
+                <li class="back-error-log">
+                    <%= errors[i].msg %> 
+                </li>
+            <% } %> 
+        </ul>
+    <% } %> 
+    
+    <form action="/user/edit_profile?_method=PATCH" method="POST" enctype="multipart/form-data">
+        <label for="full_name">Full Name:</label>
+        <input type="text" name="full_name" value=<%= user.full_name %>>
+        <br>
+        <label for="username">Username:</label>
+        <input type="text" name="username" value=<%= user.username %>>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" name="password">
+        <br>
+        <label for="avatar">Avatar:</label>
+        <input type="file" name="avatar">
+        <br>
+        <label for="delete_avatar">Delete avatar</label>
+        <input type="checkbox" name="delete_avatar">
+        <br>
+        <br>
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

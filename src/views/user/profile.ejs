@@ -7,5 +7,15 @@
 </head>
 <body>
     <h1>Bienvenido devuelta, <%= user.full_name %></h1>
+    <br>
+    <img src="<%= user.avatar %> " alt="User avatar">
+    <br>
+    <a href="/user/edit_profile">Edit profile</a>
+    <br>
+    <a href="/user/logout">Logout</a>
+    <br>
+    <form action="/user/delete_account?_method=DELETE" method="POST">
+        <button type="submit">Delete account</button>
+    </form>
 </body>
 </html>
