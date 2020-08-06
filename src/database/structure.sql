@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `contacts_app`.`users` (
   `full_name` VARCHAR(100) NOT NULL,
   `username` VARCHAR(100) NOT NULL,
   `password` VARCHAR(100) NOT NULL,
+  `avatar` VARCHAR(100) DEFAULT 'img/user/avatar/no_avatar.png',
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
