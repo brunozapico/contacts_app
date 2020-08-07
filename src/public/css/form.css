@@ -1,0 +1,114 @@
+body {
+    background-color: #27303a;
+    color: white;
+    font-family: 'Sora', sans-serif;
+}
+
+main {
+    min-height: 700px;
+}
+
+.navbar-bg-dark {
+    background-color: #1F2933;
+}
+
+#signup_row, #signin_row, #edit_profile_row {
+    justify-content: center;
+}
+
+#signup_form, #signin_form, #edit_profile_form {
+    margin-bottom: -20px;
+}
+
+#form_div {
+    margin-top: 50px;
+    background-color: #1F2933;
+    padding: 25px 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgb(20, 26, 32), 0 10px 20px rgb(20, 26, 32);
+}
+
+label {
+    font-weight: 600;
+}
+
+.input-bg-dark, #delete_avatar_input, #delete_avatar_cb {
+    background-color: #2a363f;
+    border-color: #2a363f;
+    color: white;
+}
+
+.input-bg-dark:focus {
+    border-color: #27303a;
+    background-color: #52606d;
+    color: white;
+    outline:none;
+    outline-width: 0;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+#submit_div {
+    display: flex;
+    justify-content: center;
+}
+
+#submit_btn, #submit_btn_update {
+    padding: 10px 60px;
+    border-radius: 20px;
+    background: linear-gradient(to right, #FF5F6D, #FFC371);
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    top: 25px;
+}
+
+#submit_btn_update {
+    top: 67px;
+}
+
+.input-bg-dark::placeholder { 
+    color: lightgray;
+    opacity: 1;
+}
+
+#redirect_div {
+    justify-content: center;
+    display: flex;
+    margin-top: 50px;
+}
+
+#redirect_div > p > a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+#redirect_div > p > a:hover {
+    text-shadow: 0 5px 10px #1F2933;
+}
+
+#redirect_div > p > a:active {
+    font-size: 15px;
+}
+
+/* DELETE ACCOUNT */
+
+#delete_account_div {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 115px;
+    font-size: 14px;
+}
+
+#edit_profile_btn {
+    color: white;
+    font-weight: 600;
+    background: none;
+    border: none;
+}
+
