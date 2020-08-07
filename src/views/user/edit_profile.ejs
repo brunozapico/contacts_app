@@ -4,36 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/form.css">
 </head>
 <body>
-    <% if (typeof errors != 'undefined') { %>
-        <ul>
-            <% for (let i = 0; i < errors.length; i++) { %>
-                <li class="back-error-log">
-                    <%= errors[i].msg %> 
-                </li>
-            <% } %> 
-        </ul>
-    <% } %> 
-    
-    <form action="/user/edit_profile?_method=PATCH" method="POST" enctype="multipart/form-data">
-        <label for="full_name">Full Name:</label>
-        <input type="text" name="full_name" value=<%= user.full_name %>>
-        <br>
-        <label for="username">Username:</label>
-        <input type="text" name="username" value=<%= user.username %>>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" name="password">
-        <br>
-        <label for="avatar">Avatar:</label>
-        <input type="file" name="avatar">
-        <br>
-        <label for="delete_avatar">Delete avatar</label>
-        <input type="checkbox" name="delete_avatar">
-        <br>
-        <br>
-        <button type="submit">Update</button>
-    </form>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-bg-dark">
+        <a class="navbar-brand" href="#"><b>Contacts App</b></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contacts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/user">Profile</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <% if (typeof errors != 'undefined') { %>
+                <ul>
+                    <% for (let i = 0; i < errors.length; i++) { %>
+                        <li class="back-error-log">
+                            <%= errors[i].msg %> 
+                        </li>
+                    <% } %> 
+                </ul>
+            <% } %>
+            <div class="row" id="edit_profile_row">
+                <div class="col-10 col-md-6 col-lg-4" id="form_div">
+                    <form action="/user/edit_profile?_method=PATCH" method="POST" enctype="multipart/form-data" id="edit_profile_form">
+                        <div class="form-group mb-3">
+                            <label for="full_name">Full Name</label>
+                            <input type="text" class="form-control input-bg-dark" placeholder="Jane Doe" aria-label="full_name" aria-describedby="basic-addon1" name="full_name" value=<%= user.full_name %>>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control input-bg-dark" placeholder="janedoe123" aria-label="username" aria-describedby="basic-addon1" name="username" value=<%= user.username %>>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="Password">Password</label>
+                            <input type="password" class="form-control input-bg-dark" placeholder="12345678" aria-label="password" aria-describedby="basic-addon1" name="password">
+                        </div>
+                        <label for="avatar">Profile Pic</label>
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input input-bg-dark" name="avatar">
+                                <label class="custom-file-label input-bg-dark" for="avatar" aria-describedby="avatar" id="avatar_label">No image selected</label>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text" id="delete_avatar_cb">
+                                <input type="checkbox" aria-label="Checkbox for following text input">
+                              </div>
+                            </div>
+                            <input readonly type="text" class="form-control" aria-label="Text input with checkbox" id="delete_avatar_input" value="DELETE AVATAR">
+                        </div>
+                        <div id="submit_div">
+                            <button type="submit" id="submit_btn_update">UPDATE</button>
+                        </div>
+                    </form>
+                    <div id="delete_account_div">
+                        <form action="/user/delete_account?_method=DELETE" method="POST" id="delete_account_form">
+                            <p>Don´t like us any more? <button type="submit" id="edit_profile_btn">DELETE ACCOUNT</button></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

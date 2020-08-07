@@ -4,46 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/form.css">
 </head>
 <body>
-    <% if (typeof errors != 'undefined') { %>
-        <ul>
-            <% for (let i = 0; i < errors.length; i++) { %>
-                <li class="back-error-log">
-                    <%= errors[i] %> 
-                </li>
-            <% } %> 
-        </ul>
-    <% } %> 
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-bg-dark">
+        <a class="navbar-brand" href="#"><b>Contacts App</b></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contacts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/user">Profile</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+    </nav>
 
-    <% if (typeof validations != 'undefined') { %>
-        <ul>
-            <% for (let i = 0; i < validations.length; i++) { %>
-                <li class="back-error-log">
-                    <%= validations[i].msg %> 
-                </li>
+    <main>
+        <div class="container">
+            <% if (typeof errors != 'undefined') { %>
+                <ul>
+                    <% for (let i = 0; i < errors.length; i++) { %>
+                        <li class="back-error-log">
+                            <%= errors[i] %> 
+                        </li>
+                    <% } %> 
+                </ul>
             <% } %> 
-        </ul>
-    <% } %> 
-    
-    <form action="/user/signup" method="POST" enctype="multipart/form-data">
-        <label for="full_name">Full Name:</label>
-        <input type="text" name="full_name">
-        <br>
-        <label for="username">Username:</label>
-        <input type="text" name="username">
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" name="password">
-        <br>
-        <label for="avatar">Avatar:</label>
-        <input type="file" name="avatar">
-        <br>
-        <br>
-        <button type="submit">Register</button>
-        <br>
-        <br>
-        <a href="/user/login">Login</a>
-    </form>
+        
+            <% if (typeof validations != 'undefined') { %>
+                <ul>
+                    <% for (let i = 0; i < validations.length; i++) { %>
+                        <li class="back-error-log">
+                            <%= validations[i].msg %> 
+                        </li>
+                    <% } %> 
+                </ul>
+            <% } %> 
+            
+            <div class="row" id="signup_row">
+                <div class="col-10 col-md-6 col-lg-4" id="form_div">
+                    <form action="/user/signup" method="POST" enctype="multipart/form-data" id="signup_form">
+                        <div class="form-group mb-3">
+                            <label for="full_name">Full Name</label>
+                            <input type="text" class="form-control input-bg-dark" placeholder="Jane Doe" aria-label="full_name" aria-describedby="basic-addon1" name="full_name">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control input-bg-dark" placeholder="janedoe123" aria-label="username" aria-describedby="basic-addon1" name="username">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="Password">Password</label>
+                            <input type="password" class="form-control input-bg-dark" placeholder="12345678" aria-label="password" aria-describedby="basic-addon1" name="password">
+                        </div>
+                        <label for="avatar">Profile Pic</label>
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input input-bg-dark" name="avatar">
+                                <label class="custom-file-label input-bg-dark" for="avatar" aria-describedby="avatar" id="avatar_label">No image selected</label>
+                            </div>
+                        </div>
+                        <div id="submit_div">
+                            <button type="submit" id="submit_btn">SIGN UP</button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+            <div id="redirect_div">
+                <p>Already have an account? <a href="/user/login">SIGN IN</a></p>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
 </html>
