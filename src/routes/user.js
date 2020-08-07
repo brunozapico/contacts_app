@@ -11,7 +11,8 @@ const userController = require('../controllers/userController');
 
 const { isAuthenticated, isNotAuthenticated } = require('../middlewares/auth');
 
-const registerValidator = require('../middlewares/validation/registerValidator');
+const signupValidator = require('../middlewares/validation/signupValidator');
+const signinValidator = require('../middlewares/validation/signinValidator');
 const editProfileValidator = require('../middlewares/validation/editProfileValidator');
 
 // PROFILE
@@ -19,11 +20,11 @@ router.get('/', isAuthenticated, userController.profile);
 
 // SIGN UP
 router.get('/signup', isNotAuthenticated, userController.signup_get);
-router.post('/signup', isNotAuthenticated, upload.any(), registerValidator, userController.signup_post);
+router.post('/signup', isNotAuthenticated, upload.any(), signupValidator, userController.signup_post);
 
 // LOGIN
 router.get('/login', isNotAuthenticated, userController.login_get);
-router.post('/login', isNotAuthenticated, userController.login_post);
+router.post('/login', isNotAuthenticated, signinValidator, userController.login_post);
 
 // LOGOUT
 router.get('/logout', isAuthenticated, userController.destroy_session);
