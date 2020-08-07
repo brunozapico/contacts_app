@@ -9,23 +9,28 @@ const { encryptPassword } = require('../lib/bcrypt');
 passport.use('local.signin', new LocalStrategy({
     passReqToCallback: true
 }, (req, username, password, done) => {
+    let errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return done(null , false, req.flash('validations', errors.errors));
+    } else {
         db.User.findOne({where: {username: username}})
         .then(user => {
             if(!user) {
                 done(null, false, req.flash('err', 'Incorrect username.'));
             };
-
+            
             if(!checkPassword(password, user.password)) {
                 done(null, false, req.flash('err', 'Incorrect password.'));
             };
-
+            
             done(null, user);
         })
         .catch(err => {
             console.log(`Error: ${err}`);
             done(null, false, req.flash('err', 'Something went wrong with your SignIn.'));
         });
-    },
+    };
+},
 ));
 
 passport.use('local.signup', new LocalStrategy({
@@ -34,39 +39,39 @@ passport.use('local.signup', new LocalStrategy({
     let errors = validationResult(req);
     if (!errors.isEmpty()) {
         return done(null , false, req.flash('validations', errors.errors));
-    };
-
-    db.User.findOne({where: {username: username}})
-    .then(user => {
-        if(user) {
-            return done(null , false, req.flash('err', 'That user already exists.'))
-        };
-
-        let full_name = req.body.full_name;
-
-        let avatar;
-        req.files[0] ? avatar = `img/user/avatar/${req.files[0].filename}` : null;
-    
-        let newUser = {
-            full_name,
-            username,
-            password: encryptPassword(password),
-            avatar
-        };
-    
-        db.User.create(newUser)
+    } else {
+        db.User.findOne({where: {username: username}})
         .then(user => {
-            return done(null, user);
+            if(user) {
+                return done(null , false, req.flash('err', 'That user already exists.'))
+            };
+            
+            let full_name = req.body.full_name;
+            
+            let avatar;
+            req.files[0] ? avatar = `img/user/avatar/${req.files[0].filename}` : null;
+            
+            let newUser = {
+                full_name,
+                username,
+                password: encryptPassword(password),
+                avatar
+            };
+            
+            db.User.create(newUser)
+            .then(user => {
+                return done(null, user);
+            })
+            .catch(err => {
+                console.log(`Error: ${err}`);
+                return done(null, false, req.flash('err', 'Something went wrong with your SignUp.'));
+            });
         })
         .catch(err => {
             console.log(`Error: ${err}`);
             return done(null, false, req.flash('err', 'Something went wrong with your SignUp.'));
         });
-    })
-    .catch(err => {
-        console.log(`Error: ${err}`);
-        return done(null, false, req.flash('err', 'Something went wrong with your SignUp.'));
-    });
+    };
 }));
 
 passport.serializeUser((user, done) => {
