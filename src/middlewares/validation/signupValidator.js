@@ -10,19 +10,8 @@ module.exports = [
     .isLength({min:5, max: 20})
     .withMessage('Username must be between 5 and 20 characters.'),
 
-    body('password')
-    .custom((value, {req}) => {
-        if(value) {
-            if(value != ''){
-                if(value.length < 8 || value.length > 15){
-                    return false;
-                };
-                return true;
-            };
-            return true;
-        };
-        return true;
-    })
+    check('password')
+    .isLength({min:8, max: 15})
     .withMessage('Password must be between 8 and 15 characters.'),
 
     body('avatar')
@@ -48,4 +37,4 @@ module.exports = [
         return true;
     })
     .withMessage('File extension must be: ".jpg", ".jpeg", ".png" o ".gif".'),
-];
+]
