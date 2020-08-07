@@ -16,7 +16,7 @@ module.exports = {
     },
     signup_get(req, res, next) {
         try {
-            res.render('./user/signup', { errors: req.flash('err'), validations: req.flash('validations')})
+            res.render('./user/signup', { errors: req.flash('err'), validations: req.flash('validations')});
         } catch (err) {
             res.status(500).json({msg: err});
         };
@@ -35,7 +35,7 @@ module.exports = {
     },
     login_get(req, res, next) {
         try {
-            res.render('./user/login', { errors: req.flash('err')});
+            res.render('./user/login', { errors: req.flash('err'), validations: req.flash('validations')});
         } catch (err) {
             res.status(500).json({msg: err});
         };
@@ -45,6 +45,7 @@ module.exports = {
             passport.authenticate('local.signin', {
                 successRedirect: '/user',
                 failureRedirect: '/user/login',
+                failureFlash: true
             })(req, res, next)
         } catch (err) {
             res.status(500).json({msg: err});
