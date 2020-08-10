@@ -3,7 +3,7 @@ const router = require('express').Router();
 // ** MULTER **
 const multer = require('multer');
 const multer_storage = require('../lib/multer');
-const storage = multer_storage;
+const storage = multer_storage.user_multer;
 const upload = multer({ storage: storage });
 // ** MULTER **
 
