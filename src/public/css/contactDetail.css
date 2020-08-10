@@ -1,0 +1,60 @@
+#contact_row, #contact_row_full {
+    justify-content: center;
+    margin-top: 50px;
+}
+
+#contact_row_full {
+    justify-content: space-between;
+}
+
+#contact_div {
+    background-color: #1F2933;
+    box-shadow: 0 0 10px rgb(20, 26, 32), 0 10px 20px rgb(20, 26, 32);
+    margin: 100px auto;
+}
+
+@media (min-width: 768px) {
+    #contact_div {
+        margin: 100px 20px;
+    }
+}
+
+@media (max-width: 991px) {
+    #contact_row_full {
+        justify-content: center;
+    }
+}
+
+#contact {
+    height: 270px;
+}
+
+#avatar_div {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: -95px;
+}
+
+#avatar_div > img {
+    height: 180px;
+    width: 180px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgb(20, 26, 32), 0 10px 20px rgb(20, 26, 32);
+}
+
+#contact_info_div {
+    text-align: center;
+    position: relative;
+    top: -80px;
+}
+
+#contact_number {
+    font-weight: 300;
+    font-size: 16px;
+}
+
+#submit_btn_update {
+    position: relative;
+    top: -15px;
+}
