@@ -48,6 +48,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+const { isAuthenticated } = require('./middlewares/auth');
+
 // Routers
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
@@ -59,7 +61,7 @@ const apiUserRouter_v1 = require('./API/routes/apiUser_v1');
 // Routes
 app.use('/', indexRouter);
 app.use('/user', userRouter);
-app.use('/contacts', contactsRouter);
+app.use('/contacts', isAuthenticated, contactsRouter);
 
 // API v1 Routes
 app.use('/api/v1', apiUserRouter_v1);
