@@ -24,6 +24,11 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(20),
             allowNull: false
         },
+        avatar: {
+            type: dataTypes.STRING(100),
+            allowNull: false,
+            defaultValue: `img/contacts/avatar/no_avatar.png`
+        },
     };
 
     let config = {
